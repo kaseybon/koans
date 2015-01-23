@@ -14,8 +14,6 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-	triangle = [a, b, c]
-	print triangle
 
 	if a == b && b == c
 		:equilateral
