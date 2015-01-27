@@ -14,9 +14,14 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-	triangle = [a, b, c]
-	print triangle
 
+	triangle = [a, b, c]
+
+	#Check for Errors
+	raise TriangleError if triangle.bsearch { |x| x <= 0 }
+	raise TriangleError if ((a + b) <= c) || ((a + c) <= b) || ((c + b) <= a)
+
+	#Check for Triangle Type
 	if a == b && b == c
 		:equilateral
 	elsif (a == b  && a != c) || (a == c && a != b) || (b == c && b != a)
