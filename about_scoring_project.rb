@@ -33,22 +33,74 @@ def score(dice)
   
   # Set points to 0
   points = 0
+  dice.sort!
 
-  # Calculate points for triples
-  
-  
-  # Calculate points for singles
+  # Sort dice
+
+  one = []
+  two = []
+  three = []
+  four = []
+  five = []
+  six = []
+
   counter = 0
   dice.each do
-    points = points + 50 if dice[counter] == 5
-    points = points + 100 if dice[counter] == 1
+    one << 1 if dice[counter] == 1
+    two << 2 if dice[counter] == 2
+    three << 3 if dice[counter] == 3
+    four << 4 if dice[counter] == 4
+    five << 5 if dice[counter] == 5
+    six << 6 if dice[counter] == 6
+
+    #points = points + 50 if dice[counter] == 5
+    #10points = points + 100 if dice[counter] == 1
+    
     counter += 1
   end
 
+  ones = one.length
+  twos = two.length
+  threes = three.length
+  fours = four.length
+  fives = five.length
+  sixes = six.length
+
+  # Calculate Score
+  #Handle Ones
+  if ones >= 4
+    points = points + 1000
+    leftovers = ones - 3
+    points = points + (100 * leftovers)
+  elsif ones == 3
+    points = points + 1000
+  else
+    points = points + (100 * ones)
+  end
+
+  #Handle Fives
+  if fives >= 4
+    points = points + (100 * 5)
+    leftovers = fives - 3
+    points = points + (50 * leftovers)
+  elsif fives == 3
+    points = points + (100 * 5)
+  else 
+    points = points + (50 * fives)
+  end
+
+  #Handle Remaining Values
+  points = points + (100 * 2) if twos >= 3
+  points = points + (100 * 3) if threes >= 3
+  points = points + (100 * 4) if fours >= 3
+  points = points + (100 * 6) if sixes >= 3
+
+ 
   #### For Testing - DELETE LATER
   #print counter
-  print dice
-  print points
+  
+  #puts points
+  #puts "#{dice}, #{points}, #{ones} #{twos} #{threes} #{fours} #{fives} #{sixes}"
   ####
 
   # Return points

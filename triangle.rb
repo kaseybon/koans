@@ -24,7 +24,7 @@ def triangle(a, b, c)
 	#Check for Triangle Type
 	if a == b && b == c
 		:equilateral
-	elsif (a == b  && a != c) || (a == c && a != b) || (b == c && b != a)
+	elsif (a == b) || (a == c) || (b == c)
 		:isosceles
 	else
 		:scalene
